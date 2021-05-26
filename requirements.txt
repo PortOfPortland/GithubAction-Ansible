@@ -1,4 +1,4 @@
-ansible==2.9.0
+ansible==2.9.20
 pip==21.1.2
 setuptools_rust==0.12.1
 cffi==1.14.3
