@@ -1,13 +1,15 @@
 FROM ubuntu:18.04
 
-RUN apt update && apt install -y software-properties-common
+#install packages
+RUN apt update && apt install -y software-properties-common python3 python3-pip
 
-RUN apt-add-repository ppa:ansible/ansible && apt update && apt install -y python3-pip ansible
-
+#upgrade pip
 RUN python3 -m pip install --upgrade pip
 
-COPY requirements.txt /requirements.txt 
+#copy requirements over
+COPY requirements.txt /requirements.txt
 
+#install requirements
 RUN pip3 install --upgrade -r /requirements.txt
 
 COPY ./entrypoint.sh /entrypoint.sh
