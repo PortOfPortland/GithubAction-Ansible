@@ -2,16 +2,17 @@ name: "Ansible"
 description: "Runs an Ansible playbook"
 inputs:
   playbook:
-    description: "Ansible playbook to run"
     required: true
-    default: deploy.yml
+    default: 'deploy.yml'
   inventory:
-    description: "Ansible inventory to use"
     required: true
-    default: production
+    default: 'production'
+  vault_pass:
+    required: true
 runs:
   using: "docker"
   image: "Dockerfile"
   args:
     - ${{ inputs.playbook }}
     - ${{ inputs.inventory }}
+    - ${{ inputs.vault_pass }}

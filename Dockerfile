@@ -9,3 +9,7 @@ RUN python3 -m pip install --upgrade pip
 COPY requirements.txt /requirements.txt 
 
 RUN pip3 install --upgrade -r /requirements.txt
+
+COPY ./entrypoint.sh /entrypoint.sh
+
+ENTRYPOINT ["bash","/entrypoint.sh"]
