@@ -6,7 +6,7 @@ inventory=$2
 vault_pass=$3
 extra_vars=$4
 
-CMD="ansible-playbook ${playbook} --inventory {$inventory}"
+CMD="ansible-playbook ${playbook} --inventory ${inventory}"
 
 #check for vault_pass - default if nothing is specified is "none"
 if [ ! $vault_pass == "none" ]
