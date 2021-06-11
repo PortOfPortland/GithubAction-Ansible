@@ -9,6 +9,8 @@ inputs:
     default: 'production'
   vault_pass:
     required: true
+  extra_vars:
+    required: false
 runs:
   using: "docker"
   image: "Dockerfile"
@@ -16,3 +18,4 @@ runs:
     - ${{ inputs.playbook }}
     - ${{ inputs.inventory }}
     - ${{ inputs.vault_pass }}
+    - ${{ inputs.extra_vars }}
