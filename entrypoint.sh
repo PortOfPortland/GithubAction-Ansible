@@ -1,39 +1,22 @@
 #!/bin/bash
   
-#parse cmd arguments
-while getopts p:i:v:e: flag
-do
-    case "${flag}" in
-        p) playbook=${OPTARG};;
-        i) inventory=${OPTARG};;
-        v) vault_pass=${OPTARG};;
-        e) extra_vars=${OPTARG};;
-    esac
-done
+#arguments
+playbook=$1
+inventory=$2
+vault_pass=$3
+extra_vars=$4
 
-CMD="ansible-playbook"
+CMD="ansible-playbook ${playbook} --inventory {$inventory}"
 
-#check for playbook
-if [ ! -z $playbook ]
-then
-   CMD="${CMD} ${playbook}"
-fi
-
-#check for inventory 
-if [ ! -z $inventory ]
-then
-   CMD="${CMD} --inventory ${inventory}"
-fi
-
-#check for vault_pass 
-if [ ! -z $vault_pass ]
+#check for vault_pass - default if nothing is specified is "none"
+if [ ! $vault_pass == "none" ]
 then
    echo ${vault_pass} > .vaultpass
    CMD="${CMD} --vault-password-file .vaultpass"
 fi
 
-#check for extra_vars 
-if [ ! -z $extra_vars ]
+#check for extra_vars - default if nothing is specified is "none"
+if [ ! $extra_vars == "none" ]
 then
    CMD="${CMD} --extra-vars ${extra_vars}"
 fi
