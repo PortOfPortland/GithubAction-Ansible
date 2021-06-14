@@ -4,4 +4,4 @@ setuptools_rust==0.12.1
 cffi==1.14.3
 pywinrm[credssp]==0.4.1
 requests-credssp==1.2.0
-hvac==0.9.5
+hvac==0.10.6
